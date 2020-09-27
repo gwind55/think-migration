@@ -28,9 +28,9 @@ class Creator
         if (!Util::isUniqueMigrationClassName($className, $path)) {
             throw new InvalidArgumentException(sprintf('The migration class name "%s" already exists', $className));
         }
-
         // Compute the file path
         $fileName = Util::mapClassNameToFileName($className);
+
         $filePath = $path . DIRECTORY_SEPARATOR . $fileName;
 
         if (is_file($filePath)) {
