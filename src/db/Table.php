@@ -110,6 +110,7 @@ class Table extends \Phinx\Db\Table
      */
     public function addColumn($columnName, $type = null, $options = [])
     {
+        if($this->getAdapter()->hasTable($this->getName()) && $this->hasColumn($columnName)) return $this;
         if ($columnName instanceof Column && $columnName->getUnique()) {
             $index = new Index();
             $index->setColumns([$columnName->getName()]);
