@@ -120,6 +120,11 @@ class Table extends \Phinx\Db\Table
         return parent::addColumn($columnName, $type, $options);
     }
 
+		public function addIndex($columns, $options = array())
+    {
+        if ($this->getAdapter()->hasTable($this->getName()) && $this->hasIndex($columns)) return $this;
+        return parent::addIndex($columns, $options);
+    }
     /**
      * @param string $columnName
      * @param null   $newColumnType
