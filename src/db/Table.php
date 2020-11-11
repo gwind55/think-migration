@@ -104,13 +104,13 @@ class Table extends \Phinx\Db\Table
 
     /**
      * @param \Phinx\Db\Table\Column|string $columnName
-     * @param null                          $type
-     * @param array                         $options
+     * @param null $type
+     * @param array $options
      * @return \Phinx\Db\Table|Table
      */
     public function addColumn($columnName, $type = null, $options = [])
     {
-        if($this->getAdapter()->hasTable($this->getName()) && $this->hasColumn($columnName)) return $this;
+        if ($this->getAdapter()->hasTable($this->getName()) && $this->hasColumn($columnName)) return $this;
         if ($columnName instanceof Column && $columnName->getUnique()) {
             $index = new Index();
             $index->setColumns([$columnName->getName()]);
@@ -120,15 +120,16 @@ class Table extends \Phinx\Db\Table
         return parent::addColumn($columnName, $type, $options);
     }
 
-		public function addIndex($columns, $options = array())
+    public function addIndex($columns, $options = array())
     {
         if ($this->getAdapter()->hasTable($this->getName()) && $this->hasIndex($columns)) return $this;
         return parent::addIndex($columns, $options);
     }
+
     /**
      * @param string $columnName
-     * @param null   $newColumnType
-     * @param array  $options
+     * @param null $newColumnType
+     * @param array $options
      * @return \Phinx\Db\Table|Table
      */
     public function changeColumn($columnName, $newColumnType = null, $options = [])
